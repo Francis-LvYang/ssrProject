@@ -101,6 +101,33 @@ exports.logout = (req, res) => {
     })
 }
 
+// 验证手机
+exports.patchPhone = async (req, res, next) => {
+    const { body } = req
+    try {
+        const phonenum = await User.find({
+            phone: body.phone,
+        }).select('phone').exec()
+        if (phonenum.length === 1) {
+            res.json({
+                success: false,
+                message: '手机号已被占用',
+            })
+            return
+        }
+        res.json({
+            success: true,
+            message: '该手机号未被注册，可以注册',
+        })
+    } catch (e) {
+        res.json({
+            success: false,
+            data: null,
+            message: '未查询到相关信息',
+        })
+    }
+}
+
 exports.getUsers = async (req, res, next) => {
     try {
         const users = await User.find({}).exec()

@@ -15,6 +15,9 @@ router
     .post('/user',
         check.formData(['username', 'email', 'password']),
         user.postUser) // 注册
+    .patch('/user/validetephonenum',
+        check.formData(['phone']),
+        user.patchPhone) // 验证手机号
     .patch('/user',
         check.auth('token'),
         user.patchUserInfo)
