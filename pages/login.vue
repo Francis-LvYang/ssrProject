@@ -69,8 +69,10 @@
     </div>
 </template>
 <script>
+import ajax from '@/assets/scripts/ajax'
 import { mapState, mapActions, mapMutations } from 'vuex'
 import { verifyPassword, verifyEmail, verifyUsername } from '~/assets/libs/validate'
+import { encrypt } from '~/utils/crypto'
 
 export default {
     name: 'BaseLogin',
@@ -82,6 +84,7 @@ export default {
             user: {
                 email: '',
                 password: '',
+                code: '',
             },
             rules: {
                 password: verifyPassword(),
@@ -110,7 +113,11 @@ export default {
         log() {
             this.$refs.form.validate(async (valid) => {
                 if (valid) {
-                    const data = await this.login(this.user)
+                    const data = await this.login({
+                        email: this.user.email,
+                        password: encrypt(this.user.password),
+                        code: this.user.code,
+                    })
                     if (data) {
                         this.$router.push('/')
                     }
@@ -127,7 +134,7 @@ export default {
                 onCancel: () => {},
             })
         },
-        handleCode() {
+        async handleCode() {
             this.codeSrc = `${this.codeSrc}?v=${Date.now()}`
         },
     },

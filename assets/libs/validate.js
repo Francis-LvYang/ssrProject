@@ -11,7 +11,7 @@ export const verifyUsername = message => ({
     min: 2,
     max: 10,
     message: '请输入正确的用户名',
-    pattern: /^([a-zA-Z]|[\u4e00-\u9fa5]){2,10}$/,
+    pattern: /^([0-9a-zA-Z]|[\u4e00-\u9fa5]){2,10}$/,
     trigger: 'blur',
 })
 

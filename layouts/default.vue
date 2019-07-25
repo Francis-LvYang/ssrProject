@@ -156,8 +156,8 @@ export default {
         font-size: 18px;
 
         .header__left {
-            width: 150px;
             float: left;
+            margin-right: 10px;
             a {
                 color: #666 !important;
             }

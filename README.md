@@ -71,7 +71,7 @@ module.exports = {
     // Secret is very important, please remember to modify it.
     jwt: {
         expiresIn: 365 * 86400,
-        secret: 'essay',
+        secret: 'auther',
     },
     // If you want to send Email when received a comment, please config SMTP Server.
     email: {

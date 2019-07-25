@@ -28,20 +28,25 @@ router
     .post('/logout',
         check.auth('token'),
         user.logout)
-    .get('/get-img-verify', (req, res) => {
-        // console.log(req)
-        // const option = req.query
+    .get('/get-img-verify', check.auth('token'), (req, res) => {
         const code = svgCaptcha.create({
             size: 5,
             ignoreChars: '0o1i',
             noise: 2,
             color: true,
             background: '#cc9966',
+            mathMin: 4,
+            mathMax: 6,
         })
-        res.writeHead(200, { 'Content-Type': 'image/png' })
-        res.send({
-            img: code.data,
-        })
+        try {
+            res.send({
+                data: code.data,
+            })
+        } catch (error) {
+            res.send({
+                data: error,
+            })
+        }
     })
 
 module.exports = router

@@ -44,6 +44,7 @@ import { mapState, mapActions } from 'vuex'
 import {
     verifyPassword, verifyEmail, verifyUsername, verifyPhome,
 } from '~/assets/libs/validate'
+import { encrypt } from '~/utils/crypto'
 
 export default {
     name: 'Register',
@@ -80,7 +81,14 @@ export default {
         registerforUser() {
             this.$refs.form.validate(async (valide) => {
                 if (valide) {
-                    await this.register(this.registerUser)
+                    await this.register({
+                        role: 'user',
+                        username: this.registerUser.username,
+                        email: this.registerUser.email,
+                        password: encrypt(this.registerUser.password),
+                        phone: this.registerUser.phone,
+                        loginMode: 'register',
+                    })
                     this.$Message.info(`感谢${this.registerUser.username}支持！`)
                     this.$router.push('/login')
                 }

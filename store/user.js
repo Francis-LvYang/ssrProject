@@ -15,13 +15,6 @@ export const actions = {
             value: data,
         })
     },
-    async getOtherUser({ commit }, id) {
-        const { data } = await ajax.get(`/user-base/${id}`)
-        commit('setData', {
-            key: 'otherUser',
-            value: data,
-        })
-    },
     // 用户列表，后台展示
     async getUsers({ commit }) {
         const { data } = await ajax.get('/users')
@@ -58,10 +51,18 @@ export const actions = {
         })
         return success
     },
+    async getCompreCode({ commit }) {
+        const { data } = await ajax.get('/get-img-verify')
+        commit('setData', {
+            key: 'userauthCode',
+            value: data,
+        })
+    },
 }
 
 export const state = () => ({
     user: {},
     users: [],
     otherUser: {},
+    userauthCode: {},
 })

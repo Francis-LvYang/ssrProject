@@ -8,7 +8,7 @@ module.exports = {
         pass: '',
     },
     app: {
-        domain: isPro ? 'https://www.86886.wang' : 'http://127.0.0.1:3035',
+        domain: isPro ? 'http://127.0.0.1:3035' : 'http://127.0.0.1:3035',
         siteName: 'Auther',
     },
     admin: {
@@ -18,7 +18,7 @@ module.exports = {
     },
     jwt: {
         expiresIn: 1 * 1000 * 60 * 60 * 60 * 24,
-        secret: 'essay',
+        secret: 'auther',
         algorithm: 'RS256',
     },
     seo: {

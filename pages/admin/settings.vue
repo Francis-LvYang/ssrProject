@@ -48,14 +48,16 @@ export default {
         updateUserPas: {
             oldPassword: '',
             newPassword: '',
+            code: '',
         },
         rules: {
             oldPassword: verifyPassword(),
             newPassword: verifyPassword(),
         },
+        codeSrc: '',
     }),
     methods: {
-        ...mapActions('user', ['patchPassword']),
+        ...mapActions('user', ['patchPassword', 'getCompreCode']),
         updatePassword() {
             this.$refs.form.validate(async (valid) => {
                 if (valid) {
