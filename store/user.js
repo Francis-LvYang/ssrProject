@@ -58,6 +58,14 @@ export const actions = {
             value: data,
         })
     },
+    async validetephonenum({ commit }, body) {
+        const { data, success } = await ajax.patch('/user/validetephonenum', body)
+        commit('setData', {
+            key: 'phonenum',
+            value: data,
+        })
+        return success
+    },
 }
 
 export const state = () => ({

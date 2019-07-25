@@ -1,3 +1,5 @@
+import ajax from '@/assets/scripts/ajax'
+
 export const verifyPassword = message => ({
     required: true,
     min: 6,
@@ -22,10 +24,23 @@ export const verifyEmail = message => ({
     message: message || '请正确输入邮箱',
 })
 
+const validatePass = async (rule, value, callback) => {
+    const reg = /^1[34578]\d{9}$/
+    if (!new RegExp(reg).test(value)) {
+        callback(new Error('请正确输入电话号码'))
+    } else {
+        const { success } = await ajax.patch('/user/validetephonenum', { phone: value })
+        if (!success) {
+            callback(new Error('该手机号已被注册,请更换手机号'))
+        } else {
+            callback()
+        }
+    }
+}
+
 export const verifyPhome = message => ({
     required: true,
     max: 11,
     trigger: 'blur',
-    pattern: /^1[34578]\d{9}$/,
-    message: message || '请正确输入电话号码',
+    validator: validatePass,
 })

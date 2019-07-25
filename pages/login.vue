@@ -120,6 +120,8 @@ export default {
                     })
                     if (data) {
                         this.$router.push('/')
+                    } else {
+                        this.handleCode()
                     }
                 }
             })

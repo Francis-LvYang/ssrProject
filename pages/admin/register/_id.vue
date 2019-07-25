@@ -77,6 +77,7 @@ export default {
     methods: {
         ...mapActions('user', [
             'register',
+            'validetephonenum',
         ]),
         registerforUser() {
             this.$refs.form.validate(async (valide) => {
@@ -97,6 +98,12 @@ export default {
         handleCode() {
             this.codeSrc = `${this.codeSrc}?v=${Date.now()}`
         },
+        // validetePhNum(Num) {
+        //     const res = this.validetephonenum({
+        //         phone: Num,
+        //     })
+        //     console.log(res, 666)
+        // },
     },
 }
 </script>

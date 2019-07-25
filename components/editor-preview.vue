@@ -103,6 +103,8 @@ export default {
                     imgDom.setAttribute('data-height', imgDom.height)
                     imgDom.setAttribute('style', `width: ${imgDom.width}px;height: ${imgDom.height}px;background: #eee;`)
                     imgDom.setAttribute('src', 'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==')
+                    imgDom.setAttribute('preview', '1')
+                    imgDom.setAttribute('preview-text', '放大图片')
 
                     // imgDom.setAttribute('src', '/loading.gif')
                     clearInterval(timer)
