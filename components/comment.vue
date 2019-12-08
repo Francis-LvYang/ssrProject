@@ -1,7 +1,7 @@
 <template>
     <div class="comment">
         <i-spin size="large" fix v-if="spinShow"></i-spin>
-        <template v-if="comments.length">
+        <template v-if="comments.length > 0">
             <div
                 class="comment__item"
                 v-for="item in comments"
@@ -19,7 +19,7 @@
                             <a :href="`https://github.com/${item.user.username}`" target="_blank">{{item.user.username}}</a>
                             <span
                                 @click="handleReply(item.id, item.user)"
-                                v-if="item.user.username !== user.username"
+                                v-if="item.user.username !== user.username && user.id"
                             >回复</span>
                         </p>
                         <p class="two">{{ $Moment(item.createdAt).format('YYYY年MM月DD日') }}</p>
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="comment__item comment__github" v-else>
-            <i-button type="primary" size="default" @click="handleLogin">GitHub登录</i-button>
+            <i-button type="primary" size="default" @click="handleLogin">请登录后交流</i-button>
             <p>欢迎留言交流</p>
         </div>
     </div>
@@ -138,8 +138,11 @@ export default {
         },
         handleLogin() {
             // window.open(`${this.domain}/api/oauth/github/${this.id}`)
+            // 微信验证(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=`)
             this.spinShow = true
-            window.location.href = `${this.domain}/api/oauth/github/${this.id}`
+            this.$router.push('/login')
+            // window.location.href = `${this.domain}/api/oauth/github/${this.id}`
+            // window.location.href = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${this.id}`
         },
     },
 }

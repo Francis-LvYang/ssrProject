@@ -119,7 +119,7 @@ export default {
                         code: this.user.code,
                     })
                     if (data) {
-                        this.$router.push('/')
+                        this.$router.push({ path: '/', query: { isLogin: true } })
                     } else {
                         this.handleCode()
                     }

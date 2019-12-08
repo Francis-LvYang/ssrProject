@@ -39,7 +39,7 @@
             </div>
         </div>
         <base-comment
-            v-if="article.enableComment && isConfigGithub"
+            v-if="article.enableComment"
             ref="comment"
         ></base-comment>
     </div>
@@ -76,7 +76,7 @@ export default {
     computed: {
         ...mapState('article', ['article']),
         ...mapState('comment', ['comments']),
-        ...mapState('user', ['user']),
+        ...mapState('user', ['user', 'users']),
         ...mapState('global', ['siteName', 'isConfigGithub']),
         isAdmin() {
             return this.user.role === 'superAdmin'
@@ -108,11 +108,15 @@ export default {
             await this.getArticle(this.article.id)
         },
     },
+    mounted() {
+        console.log(this.article, this.users)
+    },
 }
 </script>
 <style lang="less">
 .posts {
     margin-bottom: 60px;
+    max-width: 1000px;
     .editor-preview {
         padding: 0 !important;
     }
