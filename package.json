@@ -38,7 +38,7 @@
     "nuxt": "^2.0.0",
     "qr-image": "^3.2.0",
     "require-all": "^3.0.0",
-    "shelljs": "^0.8.3",
+    "shelljs": "^0.8.5",
     "trek-captcha": "^0.4.0",
     "vue-photo-preview": "^1.1.3"
   },
